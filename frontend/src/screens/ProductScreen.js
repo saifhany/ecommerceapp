@@ -1,4 +1,4 @@
-import React ,{ useState , useEffect} from 'react'
+import React ,{ useState , useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {Row, Col , Image ,ListGroup , Card , Button, Form} from 'react-bootstrap';
 import Rating from '../components/Rating.js';
@@ -61,7 +61,7 @@ const ProductScreen = ({ history  ,match }) => {
                     <h3>{product.name}</h3>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                    <Rating value={product.rating} text={`${product.reviews} reviews`} />
+                    <Rating value={product.rating} text={`${product.numReviews} reviews`} />
                 </ListGroup.Item>
                 <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
                 <ListGroup.Item>Description:${product.description} </ListGroup.Item>
@@ -121,7 +121,10 @@ const ProductScreen = ({ history  ,match }) => {
                     {product.reviews.map((review) =>(
                         <ListGroup.Item key={review._id}>
                             <strong>{review.name}</strong>
-                            <Rating value={review.rating} />
+                            <Rating 
+                            value={review.rating}
+                            text={`${product.numReviews} reviews`}
+                             />
                             <p>{review.createdAt.substring(0,10)}</p>
                             <p>{review.comment}</p>
                         </ListGroup.Item>

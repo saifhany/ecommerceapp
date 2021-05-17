@@ -12,6 +12,7 @@ const authUSer = asyncHandler(async (req,res) =>{
             _id: user._id,
             name: user.name,
             email:user.email,
+            phone:user.phone,
             isAdmin:user.isAdmin,
             token:generateToken(user._id)   
         })
@@ -31,6 +32,7 @@ const getUSerProfile = asyncHandler(async (req,res) =>{
             _id: user._id,
             name: user.name,
             email:user.email,
+            phone:user.phone,
             isAdmin:user.isAdmin,
         })
     }else{
@@ -46,6 +48,7 @@ const updateUSerProfile = asyncHandler(async (req,res) =>{
     if(user){  
         user.name = req.body.name || user.name
         user.email = req.body.email || user.email
+        user.phone = req.body.phone || user.phone
         if(req.body.password){
             user.password = req.body.password
         }
@@ -54,6 +57,7 @@ const updateUSerProfile = asyncHandler(async (req,res) =>{
             _id: updatedUser._id,
             name: updatedUser.name,
             email:updatedUser.email,
+            phone:updatedUser.phone,
             isAdmin:updatedUser.isAdmin,
             token:generateToken(updatedUser._id)   
                 })
@@ -66,7 +70,7 @@ const updateUSerProfile = asyncHandler(async (req,res) =>{
 // @route POST / api/users/users
 // @access public
 const registerUSer = asyncHandler(async (req,res) =>{
-    const { name ,email, password} = req.body
+    const { name ,email, password,phone} = req.body
     const userExists = await User.findOne({email})
     if( userExists ){
         res.status(400)
@@ -75,7 +79,8 @@ const registerUSer = asyncHandler(async (req,res) =>{
     const user = await User.create({
         name,
         email,
-        password
+        password,
+        phone
      })
      if(user){
         res.status(201).json({
@@ -83,6 +88,7 @@ const registerUSer = asyncHandler(async (req,res) =>{
             name: user.name,
             email:user.email,
             isAdmin:user.isAdmin,
+            phone:user.phone,
             token: generateToken(user._id),
         })
     }
@@ -128,7 +134,6 @@ const getUserById = asyncHandler(async (req,res) =>{
 // @route PUT / api/users/:id
 // @access private/Admin
 const updateUser = asyncHandler(async (req,res) =>{
-
     const user = await User.findById(req.params.id)
     if(user){  
         user.name = req.body.name || user.name

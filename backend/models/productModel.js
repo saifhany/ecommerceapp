@@ -12,9 +12,7 @@ const reviewSchema = mongoose.Schema({
 },{
     timestamps:true   
 })
-// const sizeSchema = mongoose.Schema({
-//     size:{type:String,required:false}
-// })
+
 
 const productSchema = mongoose.Schema({
      user:{
@@ -43,17 +41,16 @@ const productSchema = mongoose.Schema({
         required:true,
     },
     reviews:[reviewSchema],
-    // sizes:[sizeSchema],
     rating: {
         type:Number,
         required:true,
         default:0
     },
-    // numReviews: {
-    //     type:Number,
-    //     required:true,
-    //     default:0
-    // },
+    numReviews: {
+        type:Number,
+        required:true,
+        default:0
+    },
     price:{
         type:Number,
         required:true,

@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+import validator from 'validator';
 const userSchema = mongoose.Schema({
     name:{
         type: String,
@@ -8,12 +9,34 @@ const userSchema = mongoose.Schema({
     email:{
         type: String,
         required:true,
-        unique:true
+        unique:true,
+        validate(value){
+            if(!validator.isEmail(value)){
+                   throw new Error('Invalid Email') 
+            }
+        }
     },
+    phone: {
+        type: String,
+        validate: {
+          validator: function(v) {
+            return /\d{3}\d{4}\d{4}/.test(v);
+          },
+          message: props => `${props.value} is not a valid phone number!`
+        },
+        required: [true, 'User phone number required'],
+        trim:true
+      }
+    ,
     password:{
         type: String,
-        required:true
-    },
+        required:true,
+        validate(value){
+            if(!validator.isStrongPassword( value , [{ minLength: 8,minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1}] )){
+                throw new Error('your password must Hav atleast one synbol,one uppercase and one lowercase') 
+            }
+        }
+},
     isAdmin: {
         type:Boolean,
         required:true,

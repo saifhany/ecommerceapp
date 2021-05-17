@@ -7,10 +7,11 @@ import Loading from '../components/Loading';
 import {getUserDetails, updateUserProfile} from '../actions/userActions';
 import {listMyOrders} from '../actions/OrderActions'
 const ProfileScreen = ({location,history}) => {
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [name, setName] = useState('')
     const [confirmPassword, setconfirmPassword] = useState('')
+    const [phone,setPhone ] = useState('')
     const [message, setMessage] = useState(null)
     const dispatch = useDispatch()
 
@@ -37,6 +38,7 @@ const ProfileScreen = ({location,history}) => {
             } else{
                 setName(user.name)
                 setEmail(user.email)
+                setPhone(user.phone)
             }
         }
     },[ dispatch  ,  history,userInfo ,  user])
@@ -45,7 +47,7 @@ const ProfileScreen = ({location,history}) => {
         if (password !==confirmPassword){
             setMessage('Password do not match')
         }else{
-            dispatch(updateUserProfile({id:user._id,name,email ,password}))
+            dispatch(updateUserProfile({id:user._id,name,email ,password ,phone}))
         }
     }
   return  <Row>
@@ -57,7 +59,7 @@ const ProfileScreen = ({location,history}) => {
         { loading &&<Loading />}
             <Form onSubmit={submitHandler}>
              <Form.Group controlId='name'>
-                <Form.Label>name Address</Form.Label>
+                <Form.Label>name </Form.Label>
                 <Form.Control 
                 type='name'
                  placeholder='Enter name'
@@ -92,6 +94,15 @@ const ProfileScreen = ({location,history}) => {
                  placeholder='Confirm password'
                  value={confirmPassword}
                  onChange={(e)=>setconfirmPassword(e.target.value)}
+                 ></Form.Control>
+             </Form.Group>
+             <Form.Group controlId='phone'>
+                <Form.Label>phone </Form.Label>
+                <Form.Control 
+                type='tel'
+                 placeholder='phone-num'
+                 value={phone}
+                 onChange={(e)=>setPhone(e.target.value)}
                  ></Form.Control>
              </Form.Group>
              <Button type='submit' variant='primary'>

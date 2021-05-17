@@ -9,6 +9,7 @@ import {register} from '../actions/userActions';
 const RegisterScreen = ({location,history}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [phone, setPhone] = useState('')
     const [name, setName] = useState('')
     const [confirmPassword, setconfirmPassword] = useState('')
     const [message, setMessage] = useState(null)
@@ -27,7 +28,7 @@ const RegisterScreen = ({location,history}) => {
         if (password !== confirmPassword){
             setMessage('Password do not match')
         }else{
-            dispatch(register(name,email,password ))
+            dispatch(register(name,email,password ,phone ))
         }
     }
   return  <FormContainer>
@@ -72,6 +73,15 @@ const RegisterScreen = ({location,history}) => {
                  placeholder='Confirm password'
                  value={confirmPassword}
                  onChange={(e)=>setconfirmPassword(e.target.value)}
+                 ></Form.Control>
+             </Form.Group>
+             <Form.Group controlId='phone'>
+                <Form.Label>phone number </Form.Label>
+                <Form.Control 
+                type='phone'
+                 placeholder='000-0000-0000'
+                 value={phone}
+                 onChange={(e)=>setPhone(e.target.value)}
                  ></Form.Control>
              </Form.Group>
              <Button type='submit' variant='primary'>

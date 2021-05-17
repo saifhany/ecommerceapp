@@ -1,4 +1,4 @@
-* {
+/* * {
     top: 0;
     left: 0;
     margin: 0;
@@ -57,12 +57,13 @@ h2{
     width: 100% !important;
     height: 100vh!important;
     /* background-color: red !important; */
-}
-.loader{
+/* } */
+
+/* .loader{
     left: 50% !important;
     top: 30% !important;
     z-index: 1000 !important;
     position: absolute !important;
     /* background-color:white !important; */
 
-}
+
