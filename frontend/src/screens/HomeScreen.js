@@ -5,7 +5,7 @@ import  Product from '../components/product';
 import Message from '../components/Message';
 import Loading from '../components/Loading';
 import Paginate from '../components/Paginate';
-import ProductCarousel from '../components/productcarousel';
+// import ProductCarousel from '../components/productcarousel';
 import { listProducts } from '../actions/productActions';
 import Meta from '../components/Meta';
 
@@ -23,7 +23,7 @@ const HomeScreen = ({ match }) => {
   return (
     <>
     <Meta />
-    {!keyword ? <ProductCarousel /> : error  } 
+    {/* {!keyword ? <ProductCarousel /> : error  }  */}
       <h1>Latest Products</h1>
       { loading ? (
         <Loading />
