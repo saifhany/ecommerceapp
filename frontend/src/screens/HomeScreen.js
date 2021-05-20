@@ -11,7 +11,6 @@ import Meta from '../components/Meta';
 
 const HomeScreen = ({ match }) => {
   const keyword= match.params.keyword
-  // eslint-disable-next-line
   const pageNumber = match.params.pageNumber || 1
 
     const dispatch = useDispatch();
