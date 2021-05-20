@@ -1,10 +1,10 @@
-/* * {
+ /* {
     top: 0;
     left: 0;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 body{
     margin: 0;
     padding: 0;
@@ -30,11 +30,15 @@ h3 {
 .carousel-caption h2 {
     color: #fff;
 }
+.carousel{
+    padding-top: 275px !important;
+}
 .carousel img {
     height: 300px;
     padding: 30px;
     margin: 40px;
     border-radius: 50%;
+    z-index: 2222;
 }
 .carousel a {
     margin: 0 auto;
@@ -50,20 +54,20 @@ h2{
 }
 
 
-.loader-container{
+/* .loader-container{
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
     height: 100vh!important;
-    /* background-color: red !important; */
-/* } */
+     background-color: red !important; 
+ }  */
 
-/* .loader{
+ /* .loader{
     left: 50% !important;
     top: 30% !important;
     z-index: 1000 !important;
     position: absolute !important;
-    /* background-color:white !important; */
+     background-color:white !important;  */
 
 
